@@ -1,0 +1,10 @@
+body {
+  background-color: black;
+}
+
+.transparent-form input {
+  background-color: transparent;
+  color: #e50914;
+  border: 2px solid #e50914;
+  border-radius: 5px;
+}
