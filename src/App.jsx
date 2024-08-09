@@ -25,6 +25,7 @@ function App() {
   const [page, setPage] = useState(1);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [hasMore, setHasMore] = useState(true);
+  const [totalPages, setTotalPages] = useState(0);  // Agregué setTotalPages
   const [currentProfile, setCurrentProfile] = useState({
     id: null,
     name: "Default Profile",
@@ -33,7 +34,7 @@ function App() {
 
   const location = useLocation();
 
-  const apiKey = import.meta.env.VITE_API_KEY;
+  const apiKey = 'dde347c48350d1db209090de2977ece0';
   const discoverUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&page=${page}`;
   const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${search}&page=${page}`;
 
@@ -66,7 +67,7 @@ function App() {
 
   const filterMovies = () => {
     const minRating = rating * 2 - 2;
-    const filtered = movies.filter((movie) => movie.vote_average >= minRating);
+    const filtered = movies?.filter((movie) => movie.vote_average >= minRating) || [];
     setFilteredMovies(filtered);
   };
 
@@ -81,6 +82,7 @@ function App() {
   const handleInputChange = (e) => {
     setSearch(e.target.value);
   };
+  
   function handleSubmit(e) {
     e.preventDefault();
     setPage(1);

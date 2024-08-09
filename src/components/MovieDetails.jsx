@@ -8,7 +8,7 @@ function MovieDetails() {
   const [trailerKey, setTrailerKey] = useState(null);
   const [cast, setCast] = useState([]);
 
-  const apiKey = import.meta.env.VITE_API_KEY;
+  const apiKey = "dde347c48350d1db209090de2977ece0";
 
   useEffect(() => {
     fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`)
