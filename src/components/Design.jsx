@@ -28,10 +28,10 @@ function Design({ selectProfile, currentProfile }) {
             className="logo"
           />
         </Navbar.Brand>
-        <h2 className="navbar-text">¡Tus películas favoritas!</h2>
-        <h5 className="navbar-textsecond">En un solo lugar</h5>
+        <h2 className="navbar-text text-center">¡Tus películas favoritas!</h2>
+        <h5 className="navbar-textsecond pt-md-0 pt-4">En un solo lugar</h5>
 
-        <Nav style={{ marginRight: "-50px" }}>
+        <Nav >
           <Nav.Link href="/" className="text-light z-3">
             Home
           </Nav.Link>
@@ -43,7 +43,7 @@ function Design({ selectProfile, currentProfile }) {
               src={currentProfile.imageUrl}
               alt=""
               style={{ width: "50px", height: "50px", cursor: "pointer" }}
-              className=" mx-1 z-5"
+              className=" mx-1 z-5 d-none d-md-block"
               onClick={handleProfileClick}
             />
           </Button>
@@ -51,7 +51,7 @@ function Design({ selectProfile, currentProfile }) {
             src="../../src/assets/stream.png"
             alt=""
             style={{ width: "30px", height: "30px" }}
-            className="z-3 my-2 mx-1"
+            className="z-3 my-2 mx-1 d-none d-md-block"
           />
         </Nav>
       </Container>

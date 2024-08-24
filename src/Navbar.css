@@ -10,6 +10,12 @@
   box-shadow: 0px 0px 40px #ff1414;
 }
 
+@media (max-width:768px) {
+  .navbar {
+    background-position: center 450px;
+   }
+}
+
 .navbar::before {
   content: "";
   position: absolute;

@@ -58,6 +58,7 @@ function MovieDetails() {
           <img
             src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
             alt={movie.title}
+            className="w-100"
           />
         </Col>
         <Col md={6} className="text-white">

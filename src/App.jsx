@@ -25,7 +25,7 @@ function App() {
   const [page, setPage] = useState(1);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [hasMore, setHasMore] = useState(true);
-  const [totalPages, setTotalPages] = useState(0);  // Agregué setTotalPages
+  const [totalPages, setTotalPages] = useState(0); 
   const [currentProfile, setCurrentProfile] = useState({
     id: null,
     name: "Default Profile",
@@ -116,16 +116,17 @@ function App() {
         {location.pathname === "/" && (
           <Row className="align-items-center">
             <Col xs={12} md={4}>
-              <Form onSubmit={handleSubmit} className="transparent-form">
+              <Form onSubmit={handleSubmit} className="transparent-form text-center text-md-left pb-md-0 pb-3" >
                 <input
                   type="text"
+                  className="text-md-left text-center"
                   placeholder="Buscar Película"
                   value={search}
                   onChange={handleInputChange}
                 />
               </Form>
             </Col>
-            <Col xs={12} md={4} className="d-flex justify-content-center">
+            <Col xs={12} md={4} className="d-flex justify-content-center text-center">
               <Stars setRating={setRating} />
             </Col>
           </Row>
