@@ -28,10 +28,10 @@ function Design({ selectProfile, currentProfile }) {
             className="logo"
           />
         </Navbar.Brand>
-        <h2 className="navbar-text text-center">¡Tus películas favoritas!</h2>
-        <h5 className="navbar-textsecond pt-md-0 pt-4">En un solo lugar</h5>
+        <h2 className="navbar-text text-center">Your favorite movies!</h2>
+        <h5 className="navbar-textsecond pt-md-0 pt-4">All in one place</h5>
 
-        <Nav >
+        <Nav>
           <Nav.Link href="/" className="text-light z-3">
             Home
           </Nav.Link>

@@ -11,7 +11,7 @@ function Stars({ setRating }) {
     <Container className=" justify-content-center d-flex">
       <Row>
         <div className="text-white">
-          Filtrar por Rating:
+          Filter by Rating:
           <ReactStars
             count={5}
             onChange={ratingChanged}

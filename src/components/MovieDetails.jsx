@@ -7,6 +7,7 @@ function MovieDetails() {
   const [movie, setMovie] = useState(null);
   const [trailerKey, setTrailerKey] = useState(null);
   const [cast, setCast] = useState([]);
+  const [castChunks, setCastChunks] = useState([]);
 
   const apiKey = "dde347c48350d1db209090de2977ece0";
 
@@ -15,6 +16,7 @@ function MovieDetails() {
       .then((response) => response.json())
       .then((data) => {
         setMovie(data);
+
         fetch(
           `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${apiKey}`
         )
@@ -27,6 +29,7 @@ function MovieDetails() {
               setTrailerKey(trailer.key);
             }
           });
+
         fetch(
           `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${apiKey}`
         )
@@ -37,10 +40,6 @@ function MovieDetails() {
       });
   }, [id, apiKey]);
 
-  if (!movie) {
-    return <div>Loading...</div>;
-  }
-
   const chunkArray = (array, chunkSize) => {
     const results = [];
     for (let i = 0; i < array.length; i += chunkSize) {
@@ -49,7 +48,24 @@ function MovieDetails() {
     return results;
   };
 
-  const castChunks = chunkArray(cast, 6);
+  const updateChunks = () => {
+    const screenWidth = window.innerWidth;
+    const chunkSize = screenWidth < 576 ? 2 : 6;
+    setCastChunks(chunkArray(cast, chunkSize));
+  };
+
+  useEffect(() => {
+    updateChunks();
+    window.addEventListener("resize", updateChunks);
+
+    return () => {
+      window.removeEventListener("resize", updateChunks);
+    };
+  }, [cast]);
+
+  if (!movie) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Container className="movie-details" style={{ paddingTop: "20px" }}>
@@ -64,24 +80,24 @@ function MovieDetails() {
         <Col md={6} className="text-white">
           <h2>{movie.title}</h2>
           <p>{movie.overview}</p>
-          <p>Género: {movie.genres.map((genre) => genre.name).join(", ")}</p>
-          <p>Duración: {movie.runtime} minutos</p>
-          <p>Presupuesto: ${movie.budget.toLocaleString()}</p>
-          <p>Ingresos: ${movie.revenue.toLocaleString()}</p>
+          <p>Genre: {movie.genres.map((genre) => genre.name).join(", ")}</p>
+          <p>Duration: {movie.runtime} minutes</p>
+          <p>Budget: ${movie.budget.toLocaleString()}</p>
+          <p>Revenue: ${movie.revenue.toLocaleString()}</p>
           <p>
-            Producción:{" "}
+            Production:{" "}
             {movie.production_companies
               .map((company) => company.name)
               .join(", ")}
           </p>
           <p>
-            Países de Producción:{" "}
+            Production Countries:{" "}
             {movie.production_countries
               .map((country) => country.name)
               .join(", ")}
           </p>
           <p>Rating: {movie.vote_average}</p>
-          <p>Fecha de lanzamiento: {movie.release_date}</p>
+          <p>Release Date: {movie.release_date}</p>
           {trailerKey && (
             <iframe
               title={`${movie.title} Trailer`}
@@ -94,7 +110,7 @@ function MovieDetails() {
       </Row>
       <Row>
         <Col>
-          <h3 className="text-light">Reparto:</h3>
+          <h3 className="text-light">Cast:</h3>
           <Carousel
             indicators={false}
             interval={null}
@@ -103,8 +119,8 @@ function MovieDetails() {
               <Carousel.Item key={index}>
                 <Row className="justify-content-center">
                   {chunk.map((actor) => (
-                    <Col key={actor.id} xs={6} sm={4} md={2}>
-                      <Card className="bg-dark text-white">
+                    <Col key={actor.id} xs={6} sm={6} md={4} lg={3} xl={2}>
+                      <Card className="bg-dark text-white mb-3">
                         <Card.Img
                           variant="top"
                           src={`https://image.tmdb.org/t/p/w185/${actor.profile_path}`}

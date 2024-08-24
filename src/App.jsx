@@ -109,7 +109,7 @@ function App() {
               <Button
                 variant="danger"
                 style={{ backgroundColor: "transparent" }}>
-                Volver atrás
+                Go back
               </Button>
             </a>
           )}
@@ -216,7 +216,7 @@ function App() {
                 className="btn my-1 text-light"
                 style={{ backgroundColor: "#e50914" }}
                 onClick={handleCloseModal}>
-                Ver más detalles
+                See more details
               </Link>
             </Row>
           )}
