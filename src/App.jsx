@@ -120,7 +120,7 @@ function App() {
                 <input
                   type="text"
                   className="text-md-left text-center"
-                  placeholder="Buscar Película"
+                  placeholder="Search Movie"
                   value={search}
                   onChange={handleInputChange}
                 />
